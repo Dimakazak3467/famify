@@ -1,20 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".fragments.AddPage">
+    tools:context=".fragments.ProfilePage">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="тут будет профиль и настройки"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        />
+<Button
+android:id="@+id/sign_out_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:layout_centerHorizontal="true"
+android:layout_margin="20dp"
+android:backgroundTint="@color/red"
+android:text="выйти из аккаунта"
+android:textColor="@color/white" />
 
-</RelativeLayout>
+<TextView
+android:id="@+id/profile_name"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="20dp"
+android:paddingTop="30dp"
+android:textColor="@color/black"
+android:textSize="18dp"
+android:textStyle="bold" />
+
+<TextView
+android:id="@+id/profile_email"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/profile_name"
+android:layout_centerHorizontal="true"
+android:textColor="@color/black"
+android:textSize="12dp"
+android:textStyle="bold" />
+
+    <!-- Выбор способа отображения имени -->
+<TextView
+android:id="@+id/name_source_label"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/profile_email"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="20dp"
+android:text="Использовать в качестве имени:"
+android:textColor="@color/black"
+android:textSize="14sp" />
+
+<Spinner
+android:id="@+id/name_source_spinner"
+android:layout_width="200dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/name_source_label"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="8dp" />
+
+<EditText
+android:id="@+id/custom_name_input"
+android:layout_width="200dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/name_source_spinner"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="8dp"
+android:hint="Введите имя"
+android:visibility="gone"
+android:textColor="@color/black"
+android:textColorHint="@color/gray" />
+
+<Button
+android:id="@+id/save_profile_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/custom_name_input"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="12dp"
+android:text="Сохранить"
+android:backgroundTint="@color/icon_color"
+android:textColor="@color/white"
+    android:visibility="gone"/>
+
+<TextView
+android:id="@+id/current_family_code"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/save_profile_button"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="16dp"
+android:textColor="@color/black"
+android:textSize="14dp"
+android:text="Код семьи: -" />
+
+<EditText
+android:id="@+id/family_code_input"
+android:layout_width="200dp"
+android:layout_height="wrap_content"
+android:layout_below="@id/current_family_code"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="16dp"
+android:hint="Введите код семьи"
+android:inputType="text"
+android:padding="8dp"
+android:textColor="@color/black"
+android:textColorHint="@color/gray" />
+
+<Button
+android:id="@+id/join_family_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/family_code_input"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="8dp"
+android:text="Войти по коду"
+android:backgroundTint="@color/icon_color"
+android:textColor="@color/white" />
+
+<Button
+android:id="@+id/create_family_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@id/join_family_button"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="8dp"
+android:text="Создать семью"
+android:backgroundTint="@color/icon_color"
+android:textColor="@color/white" />
+    </RelativeLayout>

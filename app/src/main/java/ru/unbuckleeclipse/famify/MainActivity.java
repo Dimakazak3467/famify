@@ -11,6 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import ru.unbuckleeclipse.famify.fragments.AddPage;
 import ru.unbuckleeclipse.famify.fragments.HomePage;
@@ -31,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("name", user.getDisplayName());
+            userData.put("email", user.getEmail());
+            // familyId не трогаем — он появится позже
+
+            db.collection("users").document(user.getUid()).set(userData, SetOptions.merge());
+        }
     }
 
     private NavigationBarView.OnItemSelectedListener navListner = item -> {

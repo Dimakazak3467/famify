@@ -12,5 +12,7 @@
     <color name="icon_color">#6A994E</color>
     <color name="gray">#757575</color>
     <color name="red">#BC4749</color>
+    <color name="item_color">#DFD6BF</color>
+    <color name="bottom_nav">#928D8D</color>
 
 </resources>
