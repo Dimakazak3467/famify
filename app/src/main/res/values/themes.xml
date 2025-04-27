@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Famify" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:windowBackground">@color/background</item>
+        <item name="colorPrimary">#5D737E</item>
+        <item name="android:windowBackground">@color/bottom_nav_background</item>
     </style>
 
     <style name="Theme.Famify" parent="Base.Theme.Famify" />

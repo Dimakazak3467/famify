@@ -17,33 +17,40 @@ android:layout_centerInParent="true">
     android:id="@+id/add_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:fontFamily="@font/nunitosans_bold"
     android:text="Добавить продукт"
-    android:textSize="20sp"
+    android:textSize="28dp"
     android:textStyle="bold"
     android:textColor="@color/black"
     android:layout_marginBottom="24dp"/>
 
-<EditText
-    android:id="@+id/product_name_input"
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:hint="Название продукта"
-    android:inputType="text"
-    android:padding="10dp"
-    android:textColor="@color/black"
-    android:textColorHint="@color/gray"
-    android:layout_marginBottom="16dp"/>
+    <EditText
+        android:id="@+id/product_name_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_source_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:hint="Название продукта"
+        android:inputType="text"
+        android:background="@drawable/edittext_bg"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:padding="8dp"/>
 
-<EditText
-    android:id="@+id/product_comment_input"
-    android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    android:hint="Комментарий"
-    android:inputType="text"
-    android:padding="10dp"
-    android:textColor="@color/black"
-    android:textColorHint="@color/gray"
-    android:layout_marginBottom="16dp"/>
+    <EditText
+        android:id="@+id/product_comment_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_source_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:hint="Комментарий"
+        android:inputType="text"
+        android:background="@drawable/edittext_bg"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:padding="8dp"/>
 
 <EditText
     android:id="@+id/product_added_by_input"
@@ -57,12 +64,20 @@ android:layout_centerInParent="true">
     android:layout_marginBottom="24dp"
     android:visibility="gone"/>
 
-<Button
-    android:id="@+id/add_product_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Добавить"
-    android:backgroundTint="@color/icon_color"
-    android:textColor="@color/white"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_product_button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_bg"
+        android:text="Добавить"
+        android:textColor="@color/white" />
 </LinearLayout>
     </RelativeLayout>
