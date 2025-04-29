@@ -1,18 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipToPadding="false"
-    android:clipChildren="false"
-    android:padding="4dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="?attr/colorSurface">
 
 <LinearLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:orientation="vertical"
-android:background="@drawable/item_bg"
-android:padding="12dp"
-android:layout_marginBottom="8dp"
-android:elevation="4dp">
+android:padding="16dp">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -20,63 +21,71 @@ android:elevation="4dp">
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/item_product_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray"
-        android:buttonTint="@color/bottom_nav_background"
-        android:fontFamily="@font/nunitosans_regular"
         android:text="В корзине"
-        android:layout_marginRight="8dp"/>
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:fontFamily="@font/nunitosans_regular"
+        app:buttonTint="?attr/colorPrimary"
+        android:layout_marginEnd="8dp"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/item_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:textColor="@color/text_color"
+        android:textColor="?attr/colorOnSurface"
         android:fontFamily="@font/nunitosans_bold"
         android:text="Название продукта" />
 
-    <ImageButton
+
+
+    <Button
+        style="?attr/materialIconButtonFilledTonalStyle"
         android:id="@+id/item_product_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Удалить"/>
+        app:icon="@drawable/ic_delete_24"
+        />
 </LinearLayout>
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
     android:id="@+id/item_product_comment"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/gray"
+    android:textColor="?attr/colorOnSurfaceVariant"
     android:textSize="14sp"
     android:fontFamily="@font/nunitosans_regular"
     android:text="Комментарий" />
 
-<TextView
-    android:id="@+id/item_product_added_by"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="@color/text_color"
-    android:textSize="12sp"
-    android:fontFamily="@font/nunitosans_bold"
-    android:text="Добавил: Имя" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="4dp">
 
-<TextView
-    android:id="@+id/item_product_added_time"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="@color/gray"
-    android:textSize="12sp"
-    android:fontFamily="@font/nunitosans_regular"
-    android:layout_gravity="end"
-    android:text="27.04.2025 22:20" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_product_added_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunitosans_bold"
+            android:text="Добавил: Имя" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_product_added_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunitosans_regular"
+            android:text="27.04.2025 22:20"/>
+    </LinearLayout>
 
 </LinearLayout>
-    </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>

@@ -1,10 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Famify" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">#5D737E</item>
-        <item name="android:windowBackground">@color/bottom_nav_background</item>
-    </style>
+    <style name="Base.Theme.Famify" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-    <style name="Theme.Famify" parent="Base.Theme.Famify" />
+    </style>
 </resources>

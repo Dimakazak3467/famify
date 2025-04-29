@@ -10,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.android.gms.auth.api.signin.*;
 import com.google.firebase.auth.*;
 import com.google.firebase.firestore.*;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import java.util.*;
 
 import ru.unbuckleeclipse.famify.LoginActivity;
@@ -26,10 +26,15 @@ public class ProfilePage extends Fragment {
     private EditText familyCodeInput, customNameInput;
     private Button joinFamilyButton, createFamilyButton, signOutButton;
     private TextView currentFamilyCode, nameTextView, emailTextView;
-    private Spinner nameSourceSpinner;
+    private AutoCompleteTextView nameSourceDropdown;
+    private TextInputLayout nameSourceLayout;
     private FirebaseFirestore db;
     private FirebaseUser user;
     private SharedPreferences prefs;
+    private String[] nameOptions;
+
+    private TextInputLayout customNameInputLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,8 +49,12 @@ public class ProfilePage extends Fragment {
         createFamilyButton = view.findViewById(R.id.create_family_button);
         currentFamilyCode = view.findViewById(R.id.current_family_code);
 
-        nameSourceSpinner = view.findViewById(R.id.name_source_spinner);
+        nameSourceLayout = view.findViewById(R.id.name_source_layout);
+        nameSourceDropdown = view.findViewById(R.id.name_source_dropdown);
+
         customNameInput = view.findViewById(R.id.custom_name_input);
+        customNameInputLayout = view.findViewById(R.id.custom_name_input_layout);
+
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -57,36 +66,30 @@ public class ProfilePage extends Fragment {
             emailTextView.setText(account.getEmail());
         }
 
-        // Настройка выпадающего списка
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+        // Настройка выпадающего списка Material3
+        nameOptions = getResources().getStringArray(R.array.name_source_options);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(),
-                R.array.name_source_options,
-                R.layout.spinner_item_black
+                android.R.layout.simple_dropdown_item_1line,
+                nameOptions
         );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        nameSourceSpinner.setAdapter(adapter);
+        nameSourceDropdown.setAdapter(adapter);
 
         // Восстановление выбора
         int savedIndex = prefs.getInt("name_source_index", 0);
         String savedCustomName = prefs.getString("custom_name", "");
-        nameSourceSpinner.setSelection(savedIndex);
+        nameSourceDropdown.setText(nameOptions[savedIndex], false);
 
         updateNameField(savedIndex, savedCustomName);
 
-        nameSourceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                updateNameField(position, prefs.getString("custom_name", ""));
-                // Автоматически сохраняем выбор
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putInt("name_source_index", position);
-                if (position == 2) {
-                    editor.putString("custom_name", customNameInput.getText().toString());
-                }
-                editor.apply();
+        nameSourceDropdown.setOnItemClickListener((parent, v, position, id) -> {
+            updateNameField(position, prefs.getString("custom_name", ""));
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("name_source_index", position);
+            if (position == 2) {
+                editor.putString("custom_name", customNameInput.getText().toString());
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            editor.apply();
         });
 
         // Автоматически сохраняем ручной ввод имени при каждом изменении
@@ -94,7 +97,8 @@ public class ProfilePage extends Fragment {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override public void afterTextChanged(Editable s) {
-                if (nameSourceSpinner.getSelectedItemPosition() == 2) {
+                int selectedIndex = Arrays.asList(nameOptions).indexOf(nameSourceDropdown.getText().toString());
+                if (selectedIndex == 2) {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("custom_name", s.toString());
                     editor.apply();
@@ -135,16 +139,15 @@ public class ProfilePage extends Fragment {
     private void updateNameField(int pos, String savedCustomName) {
         if (user == null) return;
         if (pos == 2) { // Ввод вручную
-            customNameInput.setVisibility(View.VISIBLE);
+            customNameInputLayout.setVisibility(View.VISIBLE);
             customNameInput.setText(savedCustomName);
         } else {
-            customNameInput.setVisibility(View.VISIBLE);
+            customNameInputLayout.setVisibility(View.GONE);
             if (pos == 0) {
                 customNameInput.setText(user.getDisplayName());
             } else if (pos == 1) {
                 customNameInput.setText(user.getEmail());
             }
-            customNameInput.setVisibility(View.GONE);
         }
     }
 

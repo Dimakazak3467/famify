@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_page_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/home_title"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
@@ -15,7 +14,6 @@ android:layout_height="wrap_content"
 android:text="Главная"
 android:textSize="20sp"
 android:textStyle="bold"
-android:textColor="@color/black"
 android:layout_marginTop="60dp"
 android:layout_centerHorizontal="true"/>
 
@@ -29,18 +27,17 @@ android:layout_marginTop="16dp"
 android:layout_marginBottom="16dp"
 android:padding="8dp"/>
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/empty_view"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
     android:fontFamily="@font/nunitosans_regular"
 android:text="Список пуст"
-android:textColor="@color/gray"
 android:layout_centerHorizontal="true"
 android:layout_centerVertical="true"
 android:visibility="gone"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/clear_all_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,8 +45,8 @@ android:visibility="gone"/>
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:visibility="gone"
-        android:background="@drawable/button_bg_red"
+
         android:fontFamily="@font/nunitosans_bold"
-        android:textColor="@color/white"
+
         android:elevation="4dp"/>
     </RelativeLayout>

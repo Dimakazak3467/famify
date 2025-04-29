@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/add_page_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
 <LinearLayout
 android:id="@+id/center_block"
@@ -13,7 +12,7 @@ android:orientation="vertical"
 android:gravity="center_horizontal"
 android:layout_centerInParent="true">
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
     android:id="@+id/add_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -21,36 +20,42 @@ android:layout_centerInParent="true">
     android:text="Добавить продукт"
     android:textSize="28dp"
     android:textStyle="bold"
-    android:textColor="@color/black"
     android:layout_marginBottom="24dp"/>
 
-    <EditText
-        android:id="@+id/product_name_input"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_source_spinner"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:hint="Название продукта"
-        android:inputType="text"
-        android:background="@drawable/edittext_bg"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:padding="8dp"/>
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/product_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:hint="Название продукта"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/product_comment_input"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_source_spinner"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:hint="Комментарий"
-        android:inputType="text"
-        android:background="@drawable/edittext_bg"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:padding="8dp"/>
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/product_comment_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:hint="Комментарий"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
 <EditText
     android:id="@+id/product_added_by_input"
@@ -64,21 +69,18 @@ android:layout_centerInParent="true">
     android:layout_marginBottom="24dp"
     android:visibility="gone"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/add_product_button"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_bg"
+
+
         android:fontFamily="@font/nunitosans_bold"
-        android:text="Добавить"
-        android:textColor="@color/white" />
+        android:text="Добавить"/>
+
 </LinearLayout>
     </RelativeLayout>

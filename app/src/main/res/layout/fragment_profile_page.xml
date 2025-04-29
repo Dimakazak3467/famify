@@ -3,12 +3,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context=".fragments.ProfilePage">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_out_button"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -18,34 +17,33 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button_bg"
         android:fontFamily="@font/nunitosans_bold"
         android:text="выйти из аккаунта"
-        android:textColor="@color/white" />
+         />
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/profile_name"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_centerHorizontal="true"
 android:layout_marginTop="20dp"
 android:paddingTop="30dp"
-android:textColor="@color/black"
+    android:fontFamily="@font/nunitosans_bold"
 android:textSize="18dp"
 android:textStyle="bold" />
 
-<TextView
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/profile_email"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_below="@id/profile_name"
 android:layout_centerHorizontal="true"
-android:textColor="@color/black"
+    android:fontFamily="@font/nunitosans_regular"
 android:textSize="12dp"
 android:textStyle="bold" />
 
     <!-- Выбор способа отображения имени -->
-<TextView
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/name_source_label"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
@@ -54,92 +52,97 @@ android:layout_centerHorizontal="true"
 android:layout_marginTop="20dp"
     android:fontFamily="@font/nunitosans_bold"
 android:text="Использовать в качестве имени:"
-android:textColor="@color/black"
+
 android:textSize="14sp" />
 
-<Spinner
-android:id="@+id/name_source_spinner"
-android:layout_width="200dp"
-android:layout_height="wrap_content"
-android:layout_below="@id/name_source_label"
-android:layout_centerHorizontal="true"
-android:layout_marginTop="8dp" />
-
-    <EditText
-        android:id="@+id/custom_name_input"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_source_layout"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_source_spinner"
+        android:layout_below="@id/name_source_label"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:hint="Выбор имени">
+
+    <AutoCompleteTextView
+        android:id="@+id/name_source_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:importantForAutofill="no"
+        android:dropDownHeight="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/custom_name_input_layout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_source_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:hint="Введите имя"
-        android:inputType="text"
-        android:background="@drawable/edittext_bg"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:padding="8dp"/>
+        android:visibility="gone">
 
-<androidx.appcompat.widget.AppCompatButton
-android:id="@+id/save_profile_button"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_below="@id/custom_name_input"
-android:layout_centerHorizontal="true"
-android:layout_marginTop="12dp"
-    android:fontFamily="@font/nunitosans_regular"
-android:text="Сохранить"
-android:backgroundTint="@color/icon_color"
-android:textColor="@color/white"
-    android:visibility="gone"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/custom_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-<TextView
+
+
+<com.google.android.material.textview.MaterialTextView
 android:id="@+id/current_family_code"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
-android:layout_below="@id/save_profile_button"
+android:layout_below="@id/custom_name_input_layout"
 android:layout_centerHorizontal="true"
 android:layout_marginTop="16dp"
     android:fontFamily="@font/nunitosans_bold"
-android:textColor="@color/black"
+
 android:textSize="14dp"
 android:text="Код семьи: -" />
 
-    <EditText
-        android:id="@+id/family_code_input"
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:id="@+id/family_code_input_layout"
         android:layout_below="@id/current_family_code"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunitosans_regular"
-        android:hint="Введите код семьи"
-        android:inputType="text"
-        android:background="@drawable/edittext_bg"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:padding="8dp"/>
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/family_code_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:hint="Введите код семьи"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/join_family_button"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/family_code_input"
+        android:layout_below="@id/family_code_input_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:background="@drawable/button_bg"
+
         android:fontFamily="@font/nunitosans_bold"
         android:text="Войти по коду"
-        android:textColor="@color/white" />
+         />
 
-<androidx.appcompat.widget.AppCompatButton
+<com.google.android.material.button.MaterialButton
 android:id="@+id/create_family_button"
-android:layout_width="140dp"
+android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_below="@id/join_family_button"
 android:layout_centerHorizontal="true"
 android:layout_marginTop="8dp"
     android:fontFamily="@font/nunitosans_bold"
-android:text="Создать семью"
-    android:background="@drawable/button_bg"
-android:textColor="@color/white" />
+android:text="Создать семью" />
     </RelativeLayout>

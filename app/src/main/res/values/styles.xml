@@ -1,17 +1,17 @@
 <resources>
     <!-- Базовая тема приложения -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/bottom_nav_background</item>
+        <item name="colorPrimaryDark">@color/text_color</item>
+        <item name="colorAccent">@color/item_selected</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!-- Тема для LoginActivity без ActionBar -->
-    <style name="LoginTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+    
+
+
+    <style name="Theme.Famify" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Цвета можете не указывать, если хотите использовать динамические -->
     </style>
 </resources>

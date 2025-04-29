@@ -8,6 +8,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -81,7 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView name, comment, addedBy, addedTime; // добавлено addedTime
         CheckBox checkBox;
-        ImageButton deleteButton;
+        MaterialButton deleteButton;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.item_product_name);
