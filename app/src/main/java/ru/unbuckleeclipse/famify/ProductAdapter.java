@@ -8,7 +8,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> productList;
@@ -48,6 +51,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.addedBy.setText("Добавил: " + p.getAddedBy());
         holder.checkBox.setChecked(p.isInCart());
 
+        // --- отображение даты и времени добавления
+        if (p.getCreatedAt() > 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+            String formattedDate = sdf.format(new Date(p.getCreatedAt()));
+            holder.addedTime.setText(formattedDate);
+        } else {
+            holder.addedTime.setText(""); // если нет даты
+        }
+
         holder.checkBox.setOnCheckedChangeListener(null);
         holder.checkBox.setChecked(p.isInCart());
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -67,7 +79,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView name, comment, addedBy;
+        TextView name, comment, addedBy, addedTime; // добавлено addedTime
         CheckBox checkBox;
         ImageButton deleteButton;
         public ProductViewHolder(@NonNull View itemView) {
@@ -75,6 +87,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             name = itemView.findViewById(R.id.item_product_name);
             comment = itemView.findViewById(R.id.item_product_comment);
             addedBy = itemView.findViewById(R.id.item_product_added_by);
+            addedTime = itemView.findViewById(R.id.item_product_added_time); // <--- добавлено
             checkBox = itemView.findViewById(R.id.item_product_checkbox);
             deleteButton = itemView.findViewById(R.id.item_product_delete);
         }

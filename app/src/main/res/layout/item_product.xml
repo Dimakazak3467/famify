@@ -68,5 +68,15 @@ android:elevation="4dp">
     android:fontFamily="@font/nunitosans_bold"
     android:text="Добавил: Имя" />
 
+<TextView
+    android:id="@+id/item_product_added_time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/gray"
+    android:textSize="12sp"
+    android:fontFamily="@font/nunitosans_regular"
+    android:layout_gravity="end"
+    android:text="27.04.2025 22:20" />
+
 </LinearLayout>
     </FrameLayout>

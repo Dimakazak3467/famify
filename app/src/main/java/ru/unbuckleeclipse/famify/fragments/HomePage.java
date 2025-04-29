@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,9 @@ public class HomePage extends Fragment {
     private ListenerRegistration userListener, productsListener;
     private String familyId = null;
 
+    private Button clearAllButton;
+    private List<Product> currentProducts = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -45,6 +49,27 @@ public class HomePage extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        clearAllButton = view.findViewById(R.id.clear_all_button);
+        clearAllButton.setOnClickListener(v -> {
+            if (getContext() == null || familyId == null || currentProducts.isEmpty()) return;
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Очистить все?")
+                    .setMessage("Вы уверены, что хотите удалить все товары? Это действие нельзя отменить.")
+                    .setPositiveButton("Удалить все", (dialog, which) -> {
+                        // Удаление всех продуктов
+                        WriteBatch batch = db.batch();
+                        for (Product p : currentProducts) {
+                            if (p.getId() != null) {
+                                batch.delete(db.collection("families").document(familyId)
+                                        .collection("products").document(p.getId()));
+                            }
+                        }
+                        batch.commit();
+                    })
+                    .setNegativeButton("Отмена", null)
+                    .show();
+        });
 
         // Слушатель для действий пользователя в списке
         adapter.setOnProductActionListener(new ProductAdapter.OnProductActionListener() {
@@ -107,6 +132,8 @@ public class HomePage extends Fragment {
                                             }
                                         }
                                         adapter.setProductList(productList);
+                                        currentProducts = productList;
+                                        clearAllButton.setVisibility(productList.isEmpty() ? View.GONE : View.VISIBLE);
                                         emptyView.setVisibility(productList.isEmpty() ? View.VISIBLE : View.GONE);
                                     });
                         } else {

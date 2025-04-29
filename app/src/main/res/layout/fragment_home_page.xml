@@ -33,9 +33,23 @@ android:padding="8dp"/>
 android:id="@+id/empty_view"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
+    android:fontFamily="@font/nunitosans_regular"
 android:text="Список пуст"
 android:textColor="@color/gray"
 android:layout_centerHorizontal="true"
 android:layout_centerVertical="true"
 android:visibility="gone"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/clear_all_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Очистить все"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        android:background="@drawable/button_bg_red"
+        android:fontFamily="@font/nunitosans_bold"
+        android:textColor="@color/white"
+        android:elevation="4dp"/>
     </RelativeLayout>

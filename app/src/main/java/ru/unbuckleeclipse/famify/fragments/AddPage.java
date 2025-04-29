@@ -74,6 +74,7 @@ public class AddPage extends Fragment {
                 productData.put("comment", comment);
                 productData.put("addedBy", addedBy);
                 productData.put("inCart", false);
+                productData.put("createdAt", System.currentTimeMillis()); // <--- добавлено
 
                 db.collection("families").document(familyId).collection("products")
                         .add(productData)
