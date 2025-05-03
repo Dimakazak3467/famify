@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
 import com.google.android.gms.auth.api.signin.*;
+import com.google.android.material.transition.MaterialFade;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.firebase.auth.*;
 import com.google.firebase.firestore.*;
 import com.google.android.material.textfield.TextInputLayout;
@@ -38,6 +40,7 @@ public class ProfilePage extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_profile_page, container, false);
 
         nameTextView = view.findViewById(R.id.profile_name);
@@ -129,7 +132,7 @@ public class ProfilePage extends Fragment {
             if (!code.isEmpty()) {
                 joinFamily(code);
             } else {
-                familyCodeInput.setError("Введите код семьи");
+                familyCodeInput.setError("Введите код группы");
             }
         });
 
@@ -156,9 +159,9 @@ public class ProfilePage extends Fragment {
         db.collection("users").document(user.getUid()).get().addOnSuccessListener(doc -> {
             if (doc.exists() && doc.contains("familyId")) {
                 String code = doc.getString("familyId");
-                currentFamilyCode.setText("Код семьи: " + (code != null ? code : "-"));
+                currentFamilyCode.setText("Код группы: " + (code != null ? code : "-"));
             } else {
-                currentFamilyCode.setText("Код семьи: -");
+                currentFamilyCode.setText("Код группы: -");
             }
         });
     }
@@ -182,11 +185,11 @@ public class ProfilePage extends Fragment {
                     db.collection("users").document(userId).update("familyId", familyCode)
                             .addOnSuccessListener(aVoid2 -> {
                                 updateCurrentFamilyCode();
-                                Toast.makeText(getContext(), "Семья создана! Код: " + familyCode, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Группа создана! Код: " + familyCode, Toast.LENGTH_SHORT).show();
                             });
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Ошибка создания семьи: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Ошибка создания группы: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -206,15 +209,15 @@ public class ProfilePage extends Fragment {
                             db.collection("users").document(userId).update("familyId", familyCode)
                                     .addOnSuccessListener(aVoid2 -> {
                                         updateCurrentFamilyCode();
-                                        Toast.makeText(getContext(), "Вы присоединились к семье!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Вы присоединились к группе!", Toast.LENGTH_SHORT).show();
                                     });
                         });
             } else {
-                familyCodeInput.setError("Семья с таким кодом не найдена");
-                Toast.makeText(getContext(), "Семья с таким кодом не найдена", Toast.LENGTH_SHORT).show();
+                familyCodeInput.setError("Группа с таким кодом не найдена");
+                Toast.makeText(getContext(), "Группа с таким кодом не найдена", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(e -> {
-            Toast.makeText(getContext(), "Ошибка поиска семьи: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Ошибка поиска Группы: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
 

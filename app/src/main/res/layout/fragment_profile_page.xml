@@ -18,7 +18,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/nunitosans_bold"
-        android:text="выйти из аккаунта"
+        android:text="Выйти из аккаунта"
          />
 
 <com.google.android.material.textview.MaterialTextView
@@ -76,7 +76,7 @@ android:textSize="14sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/custom_name_input_layout"
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/name_source_layout"
         android:layout_centerHorizontal="true"
@@ -103,12 +103,12 @@ android:layout_marginTop="16dp"
     android:fontFamily="@font/nunitosans_bold"
 
 android:textSize="14dp"
-android:text="Код семьи: -" />
+android:text="Код группы: -" />
 
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="200dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:id="@+id/family_code_input_layout"
         android:layout_below="@id/current_family_code"
@@ -120,7 +120,7 @@ android:text="Код семьи: -" />
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:hint="Введите код семьи"
+            android:hint="Введите код"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,5 +144,5 @@ android:layout_below="@id/join_family_button"
 android:layout_centerHorizontal="true"
 android:layout_marginTop="8dp"
     android:fontFamily="@font/nunitosans_bold"
-android:text="Создать семью" />
+android:text="Создать группу" />
     </RelativeLayout>

@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.transition.MaterialFade;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +33,7 @@ public class AddPage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_add_page, container, false);
 
         nameInput = view.findViewById(R.id.product_name_input);

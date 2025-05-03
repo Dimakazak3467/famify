@@ -1,91 +1,164 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="8dp"
-    app:cardCornerRadius="20dp"
+    android:id="@+id/item_product_card"
+    android:layout_marginHorizontal="0dp"
+    android:layout_marginVertical="0dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
     app:strokeColor="?attr/colorOutline"
-    app:strokeWidth="0dp"
-    app:cardBackgroundColor="?attr/colorSurface">
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="16dp">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/item_product_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="В корзине"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        android:fontFamily="@font/nunitosans_regular"
-        app:buttonTint="?attr/colorPrimary"
-        android:layout_marginEnd="8dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/item_product_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="?attr/colorOnSurface"
-        android:fontFamily="@font/nunitosans_bold"
-        android:text="Название продукта" />
-
-
-
-    <Button
-        style="?attr/materialIconButtonFilledTonalStyle"
-        android:id="@+id/item_product_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_delete_24"
-        />
-</LinearLayout>
-
-<com.google.android.material.textview.MaterialTextView
-    android:id="@+id/item_product_comment"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="?attr/colorOnSurfaceVariant"
-    android:textSize="14sp"
-    android:fontFamily="@font/nunitosans_regular"
-    android:text="Комментарий" />
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="4dp">
+        android:padding="8dp"
+        android:paddingEnd="0dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/item_product_added_by"
-            android:layout_width="wrap_content"
+        <!-- Верхняя строка: CheckBox + Текст + FAB -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="12sp"
-            android:fontFamily="@font/nunitosans_bold"
-            android:text="Добавил: Имя" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="0dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/item_product_added_time"
-            android:layout_width="wrap_content"
+            <!-- CheckBox -->
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_product_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:fontFamily="@font/nunitosans_regular"
+                app:buttonTint="?attr/colorPrimary"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="0dp"/>
+
+            <!-- Текстовый блок с весом -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+
+                    android:ellipsize="end"
+                    android:textColor="?attr/colorOnSurface"
+                    android:fontFamily="@font/nunitosans_bold"
+                    android:text="Название"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_product_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="14sp"
+
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="Комментарий"/>
+            </LinearLayout>
+
+            <!-- FAB -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/item_product_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Меню"
+                    android:elevation="8dp"
+                    style="?attr/floatingActionButtonSmallStyle"
+                    app:borderWidth="0dp"
+                    app:maxImageSize="24dp"
+                    app:srcCompat="@drawable/ic_more_vert_24"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Нижняя строка: Информация + Кнопки действий -->
+        <LinearLayout
+            android:id="@+id/item_product_bottom_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:textSize="12sp"
-            android:fontFamily="@font/nunitosans_regular"
-            android:text="27.04.2025 22:20"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp"
+            android:visibility="gone">
+
+            <!-- Информация о добавлении -->
+            <LinearLayout
+                android:id="@+id/item_product_info_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="16dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_product_added_by"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunitosans_bold"
+                    android:text="Добавил: Имя"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/item_product_added_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunitosans_regular"
+                    android:text="27.04.2025 22:20"/>
+            </LinearLayout>
+
+            <!-- Кнопки действий -->
+            <LinearLayout
+                android:id="@+id/item_product_buttons_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingEnd="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/item_product_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_edit_24"
+                    style="?attr/materialIconButtonOutlinedStyle"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/item_product_delete"
+                    style="?attr/materialIconButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_delete_24"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>
