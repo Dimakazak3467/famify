@@ -171,7 +171,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 alphaAnim.setInterpolator(new AccelerateDecelerateInterpolator());
                 alphaAnim.setDuration(125);
 
-                // Фиксируем окончательные параметры после анимации
+
                 heightAnim.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {

@@ -69,7 +69,7 @@ public class ProfilePage extends Fragment {
             emailTextView.setText(account.getEmail());
         }
 
-        // Настройка выпадающего списка Material3
+        // Настройка выпадающего списка
         nameOptions = getResources().getStringArray(R.array.name_source_options);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 requireContext(),

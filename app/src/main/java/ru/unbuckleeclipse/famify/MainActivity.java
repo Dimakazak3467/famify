@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         // Открываем HomePage по умолчанию
         if (savedInstanceState == null) {
             Fragment selectedFragment = new HomePage();
-            // Устанавливаем MaterialFadeThrough для анимации
             selectedFragment.setEnterTransition(new MaterialFade());
             selectedFragment.setExitTransition(new MaterialFade());
             getSupportFragmentManager()

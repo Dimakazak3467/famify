@@ -117,6 +117,7 @@ android:text="Код группы: -" />
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/family_code_input"
+            android:inputType="textCapCharacters|textNoSuggestions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
