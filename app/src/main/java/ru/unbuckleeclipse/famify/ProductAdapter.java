@@ -137,11 +137,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 int targetHeight = 0;
 
                 if (expand) {
-                    // Делаем кнопки видимыми перед измерением
+
                     holder.editButton.setVisibility(View.VISIBLE);
                     holder.deleteButton.setVisibility(View.VISIBLE);
 
-                    // Принудительный расчет размеров
+
                     holder.bottomContainer.measure(
                             View.MeasureSpec.makeMeasureSpec(holder.bottomContainer.getWidth(), View.MeasureSpec.EXACTLY),
                             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)

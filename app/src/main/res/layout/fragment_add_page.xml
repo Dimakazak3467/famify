@@ -26,7 +26,7 @@ android:layout_centerInParent="true">
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-
+        android:id="@+id/product_name_input_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         >
@@ -42,7 +42,7 @@ android:layout_centerInParent="true">
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-
+        android:id="@+id/product_comment_input_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         >

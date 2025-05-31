@@ -1,5 +1,6 @@
 package ru.unbuckleeclipse.famify;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import ru.unbuckleeclipse.famify.fragments.HomePage;
 import ru.unbuckleeclipse.famify.fragments.ProfilePage;
 
 public class MainActivity extends AppCompatActivity {
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+
         BottomNavigationView bottomnav = findViewById(R.id.bottom_navigation);
         bottomnav.setSelectedItemId(R.id.nav_home);
         bottomnav.setOnItemSelectedListener(navListner);
 
-        // Открываем HomePage по умолчанию
         if (savedInstanceState == null) {
             Fragment selectedFragment = new HomePage();
             selectedFragment.setEnterTransition(new MaterialFade());
@@ -40,14 +43,27 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        // Firestore: обновление данных пользователя
+        updateUserData();
+    }
+
+    private void updateUserData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Обновляем базовые данные пользователя
             Map<String, Object> userData = new HashMap<>();
             userData.put("name", user.getDisplayName());
             userData.put("email", user.getEmail());
             db.collection("users").document(user.getUid()).set(userData, SetOptions.merge());
+
+            // Кэшируем код группы
+            db.collection("users").document(user.getUid()).get().addOnSuccessListener(doc -> {
+                if (doc.exists() && doc.contains("familyId")) {
+                    String familyCode = doc.getString("familyId");
+                    prefs.edit().putString("cached_family_code", familyCode).apply();
+                }
+            });
         }
     }
 
@@ -67,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(
-                            R.anim.fade_in,      // enter
-                            R.anim.fade_out,     // exit
-                            R.anim.fade_in,      // popEnter
-                            R.anim.fade_out      // popExit
+                            R.anim.fade_in,
+                            R.anim.fade_out,
+                            R.anim.fade_in,
+                            R.anim.fade_out
                     )
                     .replace(R.id.fragment_container, selectedFragment)
                     .commit();
