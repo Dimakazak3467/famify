@@ -2,7 +2,7 @@
     <string name="app_name">famify</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="default_web_client_id">YOUR_OWN_WEB_CLIENT_ID</string>
+    <string name="default_web_client_id">your_own_web_id</string>
     <string-array name="name_source_options">
         <item>Имя аккаунта</item>
         <item>Почта</item>
