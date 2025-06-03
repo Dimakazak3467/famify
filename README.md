@@ -20,4 +20,4 @@
 - **Анимации**: ObjectAnimator, ValueAnimator
 
 ## 📱 Скриншоты
-![Экран входа](https://raw.githubusercontent.com/user/project/main/screenshots/screen1.png)
+![Экран входа](Screenshot_20250603-195257_famify.png)
