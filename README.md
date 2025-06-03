@@ -18,3 +18,6 @@
 - **Backend**: Firebase (Auth, Firestore)
 - **UI**: Material Components, RecyclerView, Fragments
 - **Анимации**: ObjectAnimator, ValueAnimator
+
+## 📱 Скриншоты
+![Экран входа](https://raw.githubusercontent.com/user/project/main/screenshots/screen1.png)
