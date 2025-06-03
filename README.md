@@ -20,4 +20,8 @@
 - **Анимации**: ObjectAnimator, ValueAnimator
 
 ## 📱 Скриншоты
-![Экран входа](Screenshot_20250603-195257_famify.png)
+<p align="center">
+  <img src="Screenshot_20250603-195257_famify.png" alt="Скрин 1" width="200"/>
+  <img src="screenshots/screen2.png" alt="Скрин 2" width="200"/>
+  <img src="screenshots/screen3.png" alt="Скрин 3" width="200"/>
+</p>
